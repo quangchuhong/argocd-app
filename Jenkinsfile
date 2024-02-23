@@ -12,8 +12,8 @@ pipeline {
   environment {
     AWS_ACCESS_KEY_ID     = credentials('PACKER_AWS_ACCESS_KEY')
     AWS_SECRET_ACCESS_KEY = credentials('PACKER_AWS_SECRET_KEY')
-    REGISTRY              = '633834615594.dkr.ecr.us-west-2.amazonaws.com'
-    REGION                = 'us-west-2'
+    REGISTRY              = '904594193283.dkr.ecr.ap-southeast-1.amazonaws.com/argo-test'
+    REGION                = 'ap-southeast-1'
     GIT_CREDS             = credentials('git')
   }
 
@@ -55,10 +55,10 @@ pipeline {
       steps {
         sh '''#!/usr/bin/env bash
           echo "Shell Process ID: $$"
-          git config --global user.email "ci@ci.com"
-          git config --global user.name "jenkins-ci"
+          git config --global user.email "quang.hong.0991@gmail.com"
+          git config --global user.name "quangchuhong"
           rm -rf argocd-k8s-manifest
-          git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/hoabka/argocd-k8s-manifest.git
+          git clone https://$GIT_CREDS_USR:$GIT_CREDS_PSW@github.com/quangchuhong/argocd-k8s-manifest.git
           cd ./argocd-k8s-manifest/overlays/dev && kustomize edit set image ${REGISTRY}/samplewebapp=${REGISTRY}/samplewebapp:${GIT_COMMIT}
           git commit -am 'Publish new version' && git push || echo 'no changes'
         '''
