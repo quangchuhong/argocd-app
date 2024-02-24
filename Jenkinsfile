@@ -12,7 +12,7 @@ pipeline {
   environment {
     AWS_ACCESS_KEY_ID     = credentials('PACKER')
     AWS_SECRET_ACCESS_KEY = credentials('PACKER')
-    REGISTRY              = '904594193283.dkr.ecr.ap-southeast-1.amazonaws.com/argo-test'
+    REGISTRY              = '904594193283.dkr.ecr.ap-southeast-1.amazonaws.com'
     REGION                = 'ap-southeast-1'
     GIT_CREDS             = credentials('git')
   }
